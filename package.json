@@ -1,0 +1,19 @@
+{
+  "name": "space-mmo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,client -c blue,green \"npm run dev -w @space-mmo/server\" \"npm run dev -w @space-mmo/client\"",
+    "build": "npm run build -w @space-mmo/shared && npm run build -w @space-mmo/server && npm run build -w @space-mmo/client",
+    "db:migrate": "node apps/server/src/db/migrate.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "typescript": "^5.7.2"
+  }
+}
